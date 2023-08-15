@@ -145,10 +145,13 @@ static struc_t *addStruct(__out tid_t &id, __in LPCSTR name, LPCSTR comment)
 
     if (structPtr)
     {
-        asize_t m_size=  get_member_size(structPtr->members);
-        for (size_t i = 0; i < m_size; i++)
+        if (structPtr->members)
         {
-            del_struc_member(structPtr, i);
+            asize_t m_size = get_member_size(structPtr->members);
+            for (size_t i = 0; i < m_size; i++)
+            {
+                del_struc_member(structPtr, i);
+            }
         }
         //Ö±½ÓÉ¾³ýida »á±ÀÀ£ ¸Ä³ÉËÑË÷É¾³ý
         // Clear the old one out if it exists and set the comment
